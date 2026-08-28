@@ -1,22 +1,50 @@
-ssh-keygen -t ed25519 -C "minirt-deploy"
+1. If you already have the .ssh folder in your pc, just skip this step.
 
-The following question will appear:
-Enter file in which to save the key (/home/<user>/.ssh/id_ed25519):
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
 
-Do NOT press Enter. Instead type:
-/home/<user>/.ssh/minirt-deploy
 
-Tip: you can use "whoami" to get your user
+2. Get the keys from me 
 
-Then press Enter 3x to skip the passphrase.
-
-You'll end up with:
+Save the private key as:
 ~/.ssh/minirt_deploy
+
+and the public key as:
 ~/.ssh/minirt_deploy.pub
 
-Check the key with:
-ls -l ~/.ssh/minirt_deploy*
+Then do:
+chmod 600 ~/.ssh/minirt_deploy
+chmod 600 ~/.ssh/minirt_deploy.pub
 
-To see the public key simply use:
-cat ~/.ssh/minirt_deploy.pub
 
+3. Set the SSH Config
+
+nano ~/.ssh/config
+
+Put:
+Host github-minirt
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/minirt_deploy
+    IdentitiesOnly yes
+
+Then do:
+chmod 600 ~/.ssh/config
+
+
+4. Test the key
+ssh -T git@github-minirt
+
+
+5. Set up the repository
+git clone git@github-minirt:jbdmc42/MiniRT.git
+
+cd MiniRT
+
+git remote -v
+
+If it shows:
+origin  git@github-minirt:jbdmc42/MiniRT.git (fetch)
+origin  git@github-minirt:jbdmc42/MiniRT.git (push)
+
+it should be correct.

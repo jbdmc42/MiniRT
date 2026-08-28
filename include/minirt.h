@@ -68,7 +68,7 @@ typedef struct	s_camera
 {
     t_vector	position;
 	t_vector	orientation;
-	double		fov;
+	int			fov;
 }	t_camera;
 
 // Ambient Struct | Contains the ambient data defined by the argument
