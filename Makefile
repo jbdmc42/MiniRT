@@ -4,41 +4,56 @@ CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 LDFLAGS     = -lm -lXext -lX11 -lz
 
+GNL_DIR		= include/get_next_line
+GNL_A		= $(GNL_DIR)/get_next_line.a
+
 LIBFT_DIR   = include/libft
 LIBFT_A     = $(LIBFT_DIR)/libft.a
 
 MLX_DIR     = include/minilibx
 MLX_A       = $(MLX_DIR)/libmlx.a
 
-INCLUDES    = -I./include -I$(LIBFT_DIR) -I$(MLX_DIR)
+INCLUDES    = -I./include -I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 SRCS        = src/main.c \
-			src/input_validation/extension.c
-			src/program_execution/initialization.c
-			src/program_execution/window.c
+			src/input_validation/extension.c \
+			src/parser/extract_objs.c \
+			src/parser/extract_scene.c \
+			src/parser/scene_parser.c \
+			src/program_execution/body.c \
+			src/program_execution/initialization.c \
+			src/program_execution/scene_renderer.c \
+			src/tools/ft_def_atod.c \
+			src/tools/ft_def_atoi.c \
 
 OBJS        = $(SRCS:.c=.o)
 
 
-all: $(LIBFT_A) $(MLX_A) $(NAME)
+all: $(GNL_A) $(LIBFT_A) $(MLX_A) $(NAME)
 	@printf "\n\033[1;32m✓ MiniRT build successful!\033[0m\n\n"
 
 
+$(GNL_A):
+	@printf "\033[1;34m[1/4]\033[0m Building GetNextLine...\n"
+	@$(MAKE) -s -C $(GNL_DIR)
+	@printf "\033[1;32m✓ GetNextLine complete\033[0m\n\n"
+
+
 $(LIBFT_A):
-	@printf "\033[1;34m[1/3]\033[0m Building Libft...\n"
+	@printf "\033[1;34m[2/4]\033[0m Building Libft...\n"
 	@$(MAKE) -s -C $(LIBFT_DIR)
 	@printf "\033[1;32m✓ Libft complete\033[0m\n\n"
 
 
 $(MLX_A):
-	@printf "\033[1;34m[2/3]\033[0m Building MiniLibX...\n"
-	@$(MAKE) -s -C $(MLX_DIR)
+	@printf "\033[1;34m[3/4]\033[0m Building MiniLibX...\n"
+	@$(MAKE) -s -C $(MLX_DIR) >/dev/null 2>&1
 	@printf "\033[1;32m✓ MiniLibX complete\033[0m\n\n"
 
 
 $(NAME): $(OBJS)
-	@printf "\033[1;34m[3/3]\033[0m Building MiniRT...\n"
-	@$(CC) $(OBJS) $(LIBFT_A) $(MLX_A) $(LDFLAGS) -o $(NAME)
+	@printf "\033[1;34m[4/4]\033[0m Building MiniRT...\n"
+	@$(CC) $(OBJS) $(GNL_A) $(LIBFT_A) $(MLX_A) $(LDFLAGS) -o $(NAME)
 	@printf "\033[1;32m✓ MiniRT complete\033[0m\n\n"
 
 
@@ -49,16 +64,18 @@ $(NAME): $(OBJS)
 clean:
 	@printf "\033[1;33mCleaning object files...\033[0m\n"
 	@rm -f $(OBJS)
+	@$(MAKE) -s -C $(GNL_DIR) clean
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(MLX_DIR) clean
-	@printf "\033[1;32m✓ Clean complete\033[0m\n"
+	@printf "\n\033[1;32m✓ Clean complete\033[0m\n\n"
 
 
 fclean: clean
 	@printf "\033[1;33mRemoving executable and libraries...\033[0m\n"
 	@rm -f $(NAME)
+	@$(MAKE) -s -C $(GNL_DIR) fclean
 	@$(MAKE) -s -C $(LIBFT_DIR) fclean
-	@printf "\033[1;32m✓ Full clean complete\033[0m\n"
+	@printf "\n\033[1;32m✓ Full clean complete\033[0m\n\n"
 
 
 re: fclean all
