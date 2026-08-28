@@ -41,8 +41,18 @@ static int	initialize_image(t_data *data)
 	return (S);
 }
 
+static int	initialize_data(t_data *data)
+{
+	if (!data)
+		return (E);
+	ft_memset(data, 0, sizeof(t_data));
+	return (S);
+}
+
 int	initialize_program(t_data *data)
 {
+	if (initialize_data(data))
+		return (printf("Error: couldn't initialize data"), E);
 	if (initialize_mlx(data))
 		return (printf("Error: couldn't initialize MLX"), E);
 	if (initialize_window(data))

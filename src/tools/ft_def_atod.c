@@ -42,7 +42,7 @@ double	ft_def_atod(char *line, int	*i)
 	sig = 1;
 	dec = 0;
 	odo = 0;
-	while (line[*i] == '\t' || line[*i] == ' ')
+	while (line[*i] == '\t' || line[*i] == ' ' || line[*i] == ',')
 		(*i)++;
 	sig = get_signal(line, sig, i);
 	while ((line[*i] >= '0' && line[*i] <= '9') || line[*i] == '.')
