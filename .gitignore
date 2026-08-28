@@ -1,0 +1,17 @@
+## Editor
+.vscode/*
+*~
+\#*\#
+
+.dist/*
+*~
+\#*\#
+
+## Object Files
+*.o
+
+## Static Libraries
+*.a
+
+## Executable
+miniRT
