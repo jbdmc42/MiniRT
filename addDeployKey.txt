@@ -1,0 +1,22 @@
+ssh-keygen -t ed25519 -C "minirt-deploy"
+
+The following question will appear:
+Enter file in which to save the key (/home/<user>/.ssh/id_ed25519):
+
+Do NOT press Enter. Instead type:
+/home/<user>/.ssh/minirt-deploy
+
+Tip: you can use "whoami" to get your user
+
+Then press Enter 3x to skip the passphrase.
+
+You'll end up with:
+~/.ssh/minirt_deploy
+~/.ssh/minirt_deploy.pub
+
+Check the key with:
+ls -l ~/.ssh/minirt_deploy*
+
+To see the public key simply use:
+cat ~/.ssh/minirt_deploy.pub
+
