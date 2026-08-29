@@ -1,6 +1,25 @@
 #include "minirt.h"
 
-int	ft_def_atoi(char *line, int *i)
+static int	check_type_atoi(int val, int type)
+{
+	if (type == FOV)
+	{
+		if (val > 180)
+			return (180);
+		else if (val < 0)
+			return (0);
+	}
+	else if (type == RGB)
+	{
+		if (val > 255)
+			return (255);
+		else if (val < 0)
+			return (0);
+	}
+	return (val);
+}
+
+int	ft_def_atoi(char *line, int *i, int type)
 {
 	int	val;
 	int	sig;
@@ -20,5 +39,5 @@ int	ft_def_atoi(char *line, int *i)
 		val = line[*i] - '0' + val * 10;
 		(*i)++;
 	}
-	return (val * sig);
+	return (check_type_atoi(val, type) * sig);
 }

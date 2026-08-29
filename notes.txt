@@ -1,4 +1,4 @@
-1. Design Problem
+1. Design Problem (SOLVED)
 I recently identified a design problem in our code: the data structure includes all of the object structures inside it, which means
 that we have to initialize all of those. Since inside of them are only int/double type variables, we cannot set them to 'NULL'.
 The equivalent of a 'NULL' in numbers would be 0, but 0 is a valid number for coordinates, RGB and others. Since we then cannot
@@ -6,3 +6,6 @@ initialize those structures with 'default values' we have to only add them to da
 scene, and that can also help making it possible to add more than 1 of each item to it, making an array of objects. We'll need to
 change the data structure, make a way to add objects and also change the parsing system a little, but for now it's 'working', more
 or less.
+
+2. Parsing edge case
+We still need to verify wether the first line contains the A type, the second line contains C and the third contains L. If not, return an error.

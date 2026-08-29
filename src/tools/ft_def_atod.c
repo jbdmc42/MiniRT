@@ -31,7 +31,26 @@ int		get_signal(char *line, int sig, int *i)
 	return (sig);
 }
 
-double	ft_def_atod(char *line, int	*i)
+static double	check_type(double val, int type)
+{
+	if (type == RATIO)
+	{
+		if (val > 1.0)
+			return (1);
+		else if (val < 0.0)
+			return (0);
+	}
+	else if (type == ORIENTATION)
+	{
+		if (val > 1)
+			return (1);
+		else if (val < -1)
+			return (-1);
+	}
+	return (val);
+}
+
+double	ft_def_atod(char *line, int	*i, int type)
 {
 	double	val;
 	int		sig;
@@ -57,5 +76,5 @@ double	ft_def_atod(char *line, int	*i)
 		(*i)++;
 	}
 	val = set_decimal(val, dec);
-	return (val * sig);
+	return (check_type(val, type) * sig);
 }
