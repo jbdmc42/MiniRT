@@ -113,17 +113,22 @@ typedef struct	s_cylinder
 	t_rgb		color;
 }	t_cylinder;
 
+// Objects Struct | Contains the objects defined by the argument
+typedef struct	s_objects
+{
+	int		type;
+	void	*object;
+}	t_objects;
+
 // Scene Struct | Contains the scene data defined by the argument
 typedef struct	s_scene
 {
 	t_ambient	ambient;
 	t_light		light;
 	t_camera	camera;
-	t_sphere	sphere;
-	t_plane		plane;
-	t_cylinder	cylinder;
+	t_objects	*objects;
+	int			obj_count;
 }	t_scene;
-
 
 // Main program struct | Contains all of the programs data
 typedef struct	s_data
@@ -134,6 +139,11 @@ typedef struct	s_data
 
 /* <===================================> */
 // Function Declarations
+
+
+/* <======== cleanup ==================> */
+// free.c:
+void	free_objects(t_data *data);
 
 
 /* <======== input_validation =========> */
