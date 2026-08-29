@@ -8,6 +8,11 @@
 # define E 1			// 'Error' return value
 # define S 0			// 'Success' return value
 # define U -1			// 'Undefined' return value (used for any type of special error that isn't defined)
+# define RATIO 0		// ratio type for ft_def_atod
+# define ORIENTATION 1	// orientation type for ft_def_atod
+# define FOV 0			// fov type for ft_def_atoi
+# define RGB 1			// rgb type for ft_def_atoi
+# define DEF 2			// default type for both ft_def_atoi and ft_def_atod
 
 /* <===================================> */
 // Library Declarations
@@ -179,10 +184,10 @@ int		render_scene(t_data *data);
 
 /* <======== tools ====================> */
 // ft_def_atod.c:
-double	ft_def_atod(char *line, int *i);
+double	ft_def_atod(char *line, int *i, int type);
 
 // ft_def_atoi.c:
-int		ft_def_atoi(char *line, int *i);
+int		ft_def_atoi(char *line, int *i, int type);
 
 /* Notes:
  => in this project, 'double' is used instead of 'int' in some occasions since it helps with 'float' type calculations.
