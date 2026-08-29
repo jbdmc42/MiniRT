@@ -16,6 +16,7 @@ MLX_A       = $(MLX_DIR)/libmlx.a
 INCLUDES    = -I./include -I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 SRCS        = src/main.c \
+			src/cleanup/free.c \
 			src/input_validation/extension.c \
 			src/parser/extract_objs.c \
 			src/parser/extract_scene.c \

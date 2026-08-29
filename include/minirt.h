@@ -141,6 +141,11 @@ typedef struct	s_data
 // Function Declarations
 
 
+/* <======== cleanup ==================> */
+// free.c:
+void	free_objects(t_data *data);
+
+
 /* <======== input_validation =========> */
 // extension.c:
 int		input_validation(char *arg);
