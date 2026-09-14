@@ -8,14 +8,14 @@ int	extract_plane(t_data *data, char *line)
 
 	i = 2;
 	j = 0;
-	while (j < data->scene.obj_count && data->scene.objects[j].object)
+	while (j < data->scene.obj_count && data->scene.objs[j].obj)
 		j++;
 	if (j >= data->scene.obj_count)
 		return (E);
-	data->scene.objects[j].object = malloc(sizeof(t_plane));
-	if (!data->scene.objects[j].object)
+	data->scene.objs[j].obj = malloc(sizeof(t_plane));
+	if (!data->scene.objs[j].obj)
 		return (U);
-	plane = (t_plane *)data->scene.objects[j].object;
+	plane = (t_plane *)data->scene.objs[j].obj;
 	plane->point.x = ft_def_atod(line, &i, DEF);
 	plane->point.y = ft_def_atod(line, &i, DEF);
 	plane->point.z = ft_def_atod(line, &i, DEF);
@@ -25,7 +25,7 @@ int	extract_plane(t_data *data, char *line)
 	plane->color.r = ft_def_atoi(line, &i, RGB);
 	plane->color.g = ft_def_atoi(line, &i, RGB);
 	plane->color.b = ft_def_atoi(line, &i, RGB);
-	data->scene.objects[j].type = 0;
+	data->scene.objs[j].type = 0;
 	return (S);
 }
 
@@ -37,14 +37,14 @@ int	extract_sphere(t_data *data, char *line)
 
 	i = 2;
 	j = 0;
-	while (j < data->scene.obj_count && data->scene.objects[j].object)
+	while (j < data->scene.obj_count && data->scene.objs[j].obj)
 		j++;
 	if (j >= data->scene.obj_count)
 		return (E);
-	data->scene.objects[j].object = malloc(sizeof(t_sphere));
-	if (!data->scene.objects[j].object)
+	data->scene.objs[j].obj = malloc(sizeof(t_sphere));
+	if (!data->scene.objs[j].obj)
 		return (U);
-	sphere = (t_sphere *)data->scene.objects[j].object;
+	sphere = (t_sphere *)data->scene.objs[j].obj;
 	sphere->center.x = ft_def_atod(line, &i, DEF);
 	sphere->center.y = ft_def_atod(line, &i, DEF);
 	sphere->center.z = ft_def_atod(line, &i, DEF);
@@ -52,7 +52,7 @@ int	extract_sphere(t_data *data, char *line)
 	sphere->color.r = ft_def_atoi(line, &i, RGB);
 	sphere->color.g = ft_def_atoi(line, &i, RGB);
 	sphere->color.b = ft_def_atoi(line, &i, RGB);
-	data->scene.objects[j].type = 1;
+	data->scene.objs[j].type = 1;
 	return (S);
 }
 
@@ -79,15 +79,15 @@ int	extract_cylinder(t_data *data, char *line)
 
 	i = 2;
 	j = 0;
-	while (j < data->scene.obj_count && data->scene.objects[j].object)
+	while (j < data->scene.obj_count && data->scene.objs[j].obj)
 		j++;
 	if (j >= data->scene.obj_count)
 		return (E);
-	data->scene.objects[j].object = malloc(sizeof(t_cylinder));
-	if (!data->scene.objects[j].object)
+	data->scene.objs[j].obj = malloc(sizeof(t_cylinder));
+	if (!data->scene.objs[j].obj)
 		return (U);
-	cylinder = (t_cylinder *)data->scene.objects[j].object;
+	cylinder = (t_cylinder *)data->scene.objs[j].obj;
 	cy_extractor_helper(cylinder, line, &i);
-	data->scene.objects[j].type = 2;
+	data->scene.objs[j].type = 2;
 	return (S);
 }

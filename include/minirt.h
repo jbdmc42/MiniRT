@@ -122,7 +122,7 @@ typedef struct	s_cylinder
 typedef struct	s_objects
 {
 	int		type;
-	void	*object;
+	void	*obj;
 }	t_objects;
 
 // Scene Struct | Contains the scene data defined by the argument
@@ -131,7 +131,7 @@ typedef struct	s_scene
 	t_ambient	ambient;
 	t_light		light;
 	t_camera	camera;
-	t_objects	*objects;
+	t_objects	*objs;
 	int			obj_count;
 }	t_scene;
 
