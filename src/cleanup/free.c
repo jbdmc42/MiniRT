@@ -7,8 +7,8 @@ void	free_objects(t_data *data)
 	i = 0;
 	while (i < data->scene.obj_count)
 	{
-		free(data->scene.objects[i].object);
+		free(data->scene.objs[i].obj);
 		i++;
 	}
-	free(data->scene.objects);
+	free(data->scene.objs);
 }
